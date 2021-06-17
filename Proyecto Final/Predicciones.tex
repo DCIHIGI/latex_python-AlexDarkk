@@ -1,0 +1,100 @@
+\documentclass[12pt,a4paper]{report}
+\usepackage[utf8]{inputenc}
+\usepackage{graphicx}
+\usepackage[spanish]{babel}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage[backend=biber,style=apa]{biblatex}
+\bibliography{bib}
+\author{Gustavo Alexis Fajardo Baltazar}
+
+\begin{document}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{titlepage}
+\begin{center}
+{\bfseries\normalsize PREDICCION DEL NUMERO TOTAL DE CASILLAS POR SECCIÓN PARA EL MES DE FEBRERO DEL 2021\\}
+\vspace{1cm}
+{\mdseries\ Gustavo Alexis Fajardo Baltazar\\}
+\vspace{1cm}
+{\mdseries\ División de Ciencias e Ingenierías, Universidad de Guanajuato \\}
+\vspace{1cm}
+{\mdseries\ Herramientas Informáticas y Gestión de la Información\\}
+\vspace{1cm}
+{\mdseries\ Alma Xóchitl González Morales \\}
+\vspace{1cm}
+{\mdseries\ 15 de junio del 2021}
+\end{center}
+\end{titlepage}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{center}
+\section*{Introducción}
+\end{center}
+Debido a la reciente etapa electoral cercana, nos hemos de encargado de realizar una predicción. Dicha predicción consiste en estimar el número de casillas por sección que haría falta instalar. Cabe recalcar que la estimación hecha esta enfocada al mes de febrero del 2021 en los estados de Guanajuato y Tamaulipas. A lo largo del reporte se verán solo los datos más importantes ya que los datos que hemos trabajado se encuentran en tablas donde sus dimensiones son demasiado grandes debido a la gran cantidad de secciones por municipio.
+Para el estado de Guanajuato y Tamaulipas el compromiso con los ciudadanos es de suma importancia ya que es nuestro deber el que se pueda llevar a cabo de manera ordenada y satisfactoria este ejercicio, que es la democracia. A demás, de que aseguramos que cada uno de los ciudadanos haga valer sus derechos como mexicanas y mexicanos.
+El manejo de los datos ha sido de manera cuidadosa, desde la organización de los mismos hasta el cálculo para obtener dicha predicción.
+
+
+\vspace{0.5cm}
+
+\begin{center}
+\item \section*{Desarrollo}
+\end{center}
+El estado de Guanajuato cuenta con 46 municipios que a su vez son conformados por 3,178 secciones. Nuestro objetivo es el encontrar el cambio en la lista nominal (nacional) por municipio para posteriormente calcular el cambio en la lista nominal (nacional) por sección y así llegar al número de casillas a instalar en cada sección como el total de casillas a instalar a nivel estatal. Para poder llevar a cabo esta actividad usaremos Excel para poder organizar, graficar y calcular la predicción. El procedimiento es el mismo en ambos casos tanto para el estado de Guanajuato como para el estado de Tamaulipas.\cite{ine}
+
+\vspace{0.5cm}
+
+\subsection*{Obtención de datos}
+
+Los datos utilizados fueron obtenidos directamente de la página oficial del INE (Instituto Nacional Electoral). Para la realización de la predicción se tomaron datos mensuales del periodo septiembre 2019 – diciembre 2020. En los datos descargados se pueden observar tablas las cuales contienen datos como: Entidad, Municipio, Distrito, Sección, etc. Los datos necesarios para avanzar con el cálculo de la predicción se encuentran en el apartado Lista o Lista Nacional. Sin embargo, estos datos se encuentran a nivel nacional, por esta razón procedemos a filtrar los datos que no son importantes para la actividad que se realiza.
+
+\subsection*{Gráficas}
+Una vez organizados los datos necesarios se pasa a graficar la lista o lista nominal en función del tiempo (de manera mensual). Utilizando el paquete de python {\bfseries matplot} obtuvimos una grafica para el periodo septiembre 2019 y diciembre del 2020 y efectivamente en dichos datos podemos observar una tendencia lineal "creciente". Sin embargo, en los meses de enero 2020 se presenta un punto bajo, esto se puede deber a diversos factores como vencimiento de la credencial, dado de baja en la lista, falta de renovación, etc.
+ 
+Aun con todo esto la tendencia lineal creciente sigue presentándose en meses posteriores.
+
+\begin{figure}[h!]
+\centering
+\includegraphics[scale=0.5]{grafica1.jpg}
+\caption{Predicción de los primeros 5 municipios}
+\end{figure}
+
+\subsection*{La Tasa de Cambio en los Municipios}
+Una vez graficada la lista nominal en función del tiempo de cada uno de los municipios, utilizamos la fórmula de la pendiente que involucra dos puntos $x$ $(x_0$ y $x_1$) correspondientes al valor de las lista nominal y dos puntos $y$ $(y_0$ y $y_1)$ correspondientes al tiempo, utilizando la ecuación donde $m= \frac{y_{1}-y_{0}}{x_{1}-x_{0}}$ es nuestra tasa de cambio.
+
+\newpage
+
+\begin{figure}[h!]
+\includegraphics[scale=0.5]{tabla1.jpg}
+\caption{Tasa de cambio perteneciente al mes de febrero 2021 por municipio}
+\end{figure}
+
+
+\subsection*{Aplicación de la Tasa de Cambio por secciones}
+
+Una vez obtenida la tasa de cambio de cada uno de los municipios se organiza la información, de tal manera que tengamos a nuestro alcance el número de municipio y la sección correspondiente a ese municipio, al igual que su lista nominal del mes de diciembre para poder calcular la lista nominal del mes de febrero. Para calcular dicha lista correspondiente al mes de febrero se dividio la lista nominal predeciada para el mes del febrero entre la lista nominal de diciembre para posteriormente realizar un promedio con las cantidades  obtenidas, resulta en un solo dato (promedio), mismo que multiplicaremos por la lista nominal del mes de diciembre por secciones obteniendo asi nuestra lista nominal del mes de febrero del 2021 por secciones.  
+
+\begin{table}[h!]
+\caption{Cálculo de la Lista Nominal Febrero 2021}
+\vspace{0.25cm}
+\centering
+\begin{tabular}{|c|c|c|}
+\hline
+\textbf{Sección}&\textbf{2020-12}&\textbf{2021-02}
+\\\hline
+1&1571&1567\\\hline
+2&2033&2027\\\hline
+3&1537&1533\\\hline
+\end{tabular}
+\end{table}
+
+\begin{center}
+\section*{Conclusiones - resultados}
+\end{center}
+
+Para él estado de Guanajuato se obtuvo una predicción de casillas por instalar de 7,526. He de recalcar que los meses de enero existe un punto bajo por lo cual la tasa de cambio tiende a ser negativa, aun así, recordar que es una estimación y está sujeta a errores de pequeña magnitud. Al momento de filtrar los datos se excluyeron el municipio 0 y a partir del año 2020 se tomó en cuenta solo la lista nacional. Si se desea saber la cantidad de casillas de una sección en particular por favor de revisar la tabla adjunta al documento.
+
+\printbibliography
+
+\end{document}
